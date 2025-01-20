@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Weiterleitung zur App...</title>
+    <title>Weiterleitung...</title>
     <script>
-      // URL aus der Query-Parameter auslesen
       const params = new URLSearchParams(window.location.search);
       const deepLink = params.get("url");
 
       if (deepLink) {
-        // Versuche den Benutzer zur App weiterzuleiten
+        console.log("Deep Link erhalten:", deepLink);
+
+        // Versuche zur App weiterzuleiten
         window.location.href = deepLink;
+
+        // Falls Deep Link blockiert wird, zeige alternative Option an
+        setTimeout(() => {
+          document.body.innerHTML = `
+            <p>Kann die App nicht öffnen? <a href="${deepLink}">Hier klicken</a></p>
+          `;
+        }, 3000);
       } else {
-        document.body.innerHTML = "Ungültiger Deep Link!";
+        console.error("Kein gültiger Deep Link gefunden!");
+        document.body.innerHTML = "<p>Ungültiger Deep Link!</p>";
       }
     </script>
   </head>
