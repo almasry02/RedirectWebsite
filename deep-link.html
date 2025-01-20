@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Weiterleitung zur App...</title>
+    <script>
+      // URL aus der Query-Parameter auslesen
+      const params = new URLSearchParams(window.location.search);
+      const deepLink = params.get("url");
+
+      if (deepLink) {
+        // Versuche den Benutzer zur App weiterzuleiten
+        window.location.href = deepLink;
+      } else {
+        document.body.innerHTML = "Ungültiger Deep Link!";
+      }
+    </script>
+  </head>
+  <body>
+    <p>Du wirst zur App weitergeleitet...</p>
+  </body>
+</html>
